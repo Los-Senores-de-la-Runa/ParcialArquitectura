@@ -1,23 +1,28 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Proceso {
+
     private static int contadorId = 0;
+    private String nombre;
     private int id;
-    private int tamanio;
+    private double tamanio;
+    private Random r = new Random();
 
     public Proceso() {
     }
 
-    public Proceso(int tamanio) {
+    public Proceso(int tamanio, String nombre) {
         this.id = ++contadorId;
         this.tamanio = tamanio;
+        this.nombre = nombre;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getTamanio() {
+    public double getTamanio() {
         return tamanio;
     }
 
@@ -30,8 +35,8 @@ public class Proceso {
         return id + " " + tamanio;
     }
 
-    public static Proceso crearProceso(int tamanio) {
-        Proceso proceso = new Proceso(tamanio);
+    public static Proceso crearProceso(int tamanio, String nombre) {
+        Proceso proceso = new Proceso(tamanio, nombre);
         return proceso;
     }
 
@@ -58,4 +63,21 @@ public class Proceso {
         }
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public boolean duracion(){
+        int validacion1 = r.nextInt(25)+1;
+        int validacion2 = r.nextInt(25)+1;
+        if (validacion1 == validacion2){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

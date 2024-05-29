@@ -2,11 +2,11 @@ public class BloqueMemoria {
 
     // Atributos
     private Proceso procesoAsignado;
-    private int tamano;
+    private double tamanio_bloque;
 
     // Constructor
-    public BloqueMemoria(int tamano) {
-        this.tamano = tamano;
+    public BloqueMemoria(double tamano) {
+        this.tamanio_bloque = tamano;
         this.procesoAsignado = null;
     }
 
@@ -29,12 +29,12 @@ public class BloqueMemoria {
     }
 
     // getter y setter para el tamaño y proceso asignado
-    public int getTamano() {
-        return tamano;
+    public double getTamano() {
+        return tamanio_bloque;
     }
 
-    public void setTamano(int tamano) {
-        this.tamano = tamano;
+    public void setTamano(double tamano) {
+        this.tamanio_bloque = tamano;
     }
 
     public Proceso getProcesoAsignado() {
@@ -50,7 +50,7 @@ public class BloqueMemoria {
     public String toString() {
         return "BloqueMemoria{" +
                 "procesoAsignado=" + (procesoAsignado != null ? procesoAsignado.toString() : "null") +
-                ", tamano=" + tamano +
+                ", tamano=" + tamanio_bloque +
                 '}';
     }
 }

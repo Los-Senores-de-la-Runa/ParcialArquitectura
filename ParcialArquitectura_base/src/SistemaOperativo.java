@@ -6,7 +6,7 @@ public class SistemaOperativo {
 
 
     public SistemaOperativo() {
-        Memoria memoria = new Memoria(1250);
+        Memoria memoria = new Memoria(1000);
         this.memoryManagerUnity = memoryManagerUnity=new MemoryManagerUnity(memoria,sistemaOperativo);
     }
 
@@ -21,6 +21,9 @@ public class SistemaOperativo {
     public void enviarListaEspera(Proceso procesoEnviar){
 
         this.memoryManagerUnity.agregarProcesoListaEspera(procesoEnviar);
+    }
+    public void iniciar(){
+        memoryManagerUnity.a();
     }
     public void crearProceso(){
         Proceso proceso1 = new Proceso(45,"Zoom");

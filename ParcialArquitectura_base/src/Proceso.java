@@ -66,7 +66,9 @@ public class Proceso {
     public String getNombre() {
         return nombre;
     }
-
+    public boolean esNull(){
+        return nombre==null;
+    }
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

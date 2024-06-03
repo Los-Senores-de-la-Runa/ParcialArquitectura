@@ -74,8 +74,8 @@ public class Proceso {
     }
 
     public boolean duracion(){
-        int validacion1 = r.nextInt(25)+1;
-        int validacion2 = r.nextInt(25)+1;
+        int validacion1 = r.nextInt(10)+1;
+        int validacion2 = r.nextInt(10)+1;
         if (validacion1 == validacion2){
             return true;
         } else {

@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MemoryManagerUnity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MemoryManagerUnity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Proceso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Proceso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SistemaOperativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SistemaOperativo.java" afterDir="false" />
     </list>
     <list id="d252bc59-f237-45ba-a2de-0647f1ca6424" name="Changes by WIN10" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716413949821</updated>
       <workItem from="1716581680535" duration="1711000" />
-      <workItem from="1717348330154" duration="10927000" />
+      <workItem from="1717348330154" duration="21935000" />
     </task>
     <servers />
   </component>

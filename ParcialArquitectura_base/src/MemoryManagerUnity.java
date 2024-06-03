@@ -36,48 +36,80 @@ public class MemoryManagerUnity {
 
 
     public void a(){
-        //inicio del bucle que recorre toda la lista de espera
-        for (int i = 0; i < listaDeEsperaProcesos.size(); i++) {
-            //contador auxiliar para asegurarnos de que el espacio ocupado no exeda la memoria total
-            double contador_tamanio = 0;
-            for (int k = 1; k < listaBloques.size(); k++) {
-
-                if (listaBloques.get(k).getProcesoAsignado() != null) {
-                    contador_tamanio = contador_tamanio + listaBloques.get(k).getTamano();
+        boolean condicion_salida = true;
+        boolean lista_bloques_emty = false;
+        while(condicion_salida){
+            //comprobar que la listade espera y la lista de bloque este vacia para cortar la ejecucion de el codigo
+            for (int i = 1; i < listaBloques.size(); i++) {
+                if (listaBloques.get(i).getProcesoAsignado()!=null){
+                    lista_bloques_emty = false;
+                    break;
                 }
+                lista_bloques_emty=true;
             }
-            System.out.println(contador_tamanio);//borrar despues. sout de ayuda
+            if(listaDeEsperaProcesos.isEmpty()&&lista_bloques_emty){
+                break;
+            }
 
-            if(contador_tamanio< memoria.getTamanio()){ //if para asegurarnos de que el espacio ocupado no exeda la memoria total
+            //inicio del bucle que recorre toda la lista de espera
+            for (int i = 0; i < listaDeEsperaProcesos.size(); i++) {
+                //contador auxiliar para asegurarnos de que el espacio ocupado no exeda la memoria total
+                double contador_tamanio = 0;
+                for (int k = 1; k < listaBloques.size(); k++) {
 
-                for (int j = listaBloques.size()-1; j >= 1; j--) { //for que recorre la lista buscando lugares
+                    if (listaBloques.get(k).getProcesoAsignado() != null) {
+                        contador_tamanio = contador_tamanio + listaBloques.get(k).getTamano();
+                    }
+                }
+//                System.out.println(contador_tamanio);//borrar despues. sout de ayuda
 
-                    if (listaBloques.get(j).getProcesoAsignado() == null) { //if que verifica que el bloque que se revisa esta actualmente vacio
+                if(contador_tamanio< memoria.getTamanio()){ //if para asegurarnos de que el espacio ocupado no exeda la memoria total
 
-                        if (listaDeEsperaProcesos.get(i).getTamanio() < (listaBloques.get(j).getTamano() / 2)) { //if para revisar si el proceso puede entrar si dividimos el bloque
+                    for (int j = listaBloques.size()-1; j >= 1; j--) { //for que recorre la lista buscando lugares
 
-                            System.out.println(listaDeEsperaProcesos.get(i).getNombre());
-                            //Si el proceso es menor que la mitad del bloque, se va a dividir
-                            System.out.println("el bloque de memoria se pudo dividir");
-                            //Se va a crear otro bloque que va a ser la mitad del primer bloque
-                            BloqueMemoria bloqueMemoria = new BloqueMemoria(listaBloques.get(j).getTamano() / 2);
-                            //El bloque actual, al dividirse en dos, su tamaño cambia
-                            listaBloques.get(j).setTamano((listaBloques.get(j).getTamano() / 2));
-                            //Se agrega a la lista de bloques de memoria
-                            listaBloques.add(bloqueMemoria);
-                            j++;
+                        if (listaBloques.get(j).getProcesoAsignado() == null) { //if que verifica que el bloque que se revisa esta actualmente vacio
 
-                        }else { //en caso de que no se pueda dividir se mete en el ultimo que reviso y se rompe el bucle de lista de bloques
-                            System.out.println("el bloque de memoria no se pudo dividir mas, asignando proceso " + listaDeEsperaProcesos.get(i).getNombre() + " a la memoria");
-                            listaBloques.get(j).setProcesoAsignado(listaDeEsperaProcesos.get(i));
-                            break;
-                            //revisamos el siguiente proceso
+                            if (listaDeEsperaProcesos.get(i).getTamanio() < (listaBloques.get(j).getTamano() / 2)) { //if para revisar si el proceso puede entrar si dividimos el bloque
+
+                                System.out.println(listaDeEsperaProcesos.get(i).getNombre());
+                                //Si el proceso es menor que la mitad del bloque, se va a dividir
+                                System.out.println("el bloque de memoria se pudo dividir");
+                                System.out.println();
+                                //Se va a crear otro bloque que va a ser la mitad del primer bloque
+                                BloqueMemoria bloqueMemoria = new BloqueMemoria(listaBloques.get(j).getTamano() / 2);
+                                //El bloque actual, al dividirse en dos, su tamaño cambia
+                                listaBloques.get(j).setTamano((listaBloques.get(j).getTamano() / 2));
+                                //Se agrega a la lista de bloques de memoria
+                                listaBloques.add(bloqueMemoria);
+                                j++;
+
+                            }else if(listaDeEsperaProcesos.get(i).getTamanio()<listaBloques.get(j).getTamano()){ //en caso de que no se pueda dividir se mete en el ultimo que reviso y se rompe el bucle de lista de bloques
+                                System.out.println("el bloque de memoria no se pudo dividir mas, asignando proceso " + listaDeEsperaProcesos.get(i).getNombre() + " a la memoria");
+                                System.out.println();
+                                listaBloques.get(j).setProcesoAsignado(listaDeEsperaProcesos.get(i));
+                                listaDeEsperaProcesos.remove(i);
+                                break;
+                                //revisamos el siguiente proceso
+                            }
                         }
                     }
                 }
+//                System.out.println("---------------");
             }
+            //revisar si un proceso termino y liberar el bloque
+            for (int m = 0; m < listaBloques.size(); m++) {
+                try {
+                    if(listaBloques.get(m).getProcesoAsignado().duracion()){
+                        System.out.println("proceso: "+listaBloques.get(m).getProcesoAsignado().getNombre()+ " liberado");
+                        listaBloques.get(m).liberarProceso();
+                    }
+                }catch (Exception e){
 
-            System.out.println("---------------");
+                }
+            }
         }
+
+        }
+
+
     }
-}

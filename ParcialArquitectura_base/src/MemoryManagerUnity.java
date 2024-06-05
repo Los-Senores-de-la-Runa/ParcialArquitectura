@@ -33,12 +33,35 @@ public class MemoryManagerUnity {
     public void agregarProcesoListaEspera(Proceso proceso) {
         listaDeEsperaProcesos.add(proceso);
     }
+    public void mostrarEstadoMemoria() {
+        System.out.println("Estado actual de la memoria:");
+        for (BloqueMemoria bloque : listaBloques) {
+            if (bloque.getProcesoAsignado() != null) {
+                System.out.println("Bloque de " + bloque.getTamano() + " KB - Proceso: " + bloque.getProcesoAsignado().getNombre());
+            } else {
+                System.out.println("Bloque de " + bloque.getTamano() + " KB - Libre");
+            }
+        }
+        System.out.println();
+    }
 
 
-    public void a(){
+    public void gestion_memoria(){
+        int contador = 0;
         boolean condicion_salida = true;
         boolean lista_bloques_emty = false;
         while(condicion_salida){
+            for (int i = 0; i < listaBloques.size(); i++) {
+                try {
+                    if (listaBloques.get(i).getProcesoAsignado()==null && listaBloques.get(i+1).getProcesoAsignado()==null){
+                        listaBloques.get(i).setTamano(listaBloques.get(i).getTamano()+listaBloques.get(i+1).getTamano());
+                        listaBloques.remove(i+1);
+                    }
+                }catch (Exception e){
+                }
+
+            }
+            mostrarEstadoMemoria();
             //comprobar que la listade espera y la lista de bloque este vacia para cortar la ejecucion de el codigo
             for (int i = 1; i < listaBloques.size(); i++) {
                 if (listaBloques.get(i).getProcesoAsignado()!=null){
@@ -81,10 +104,11 @@ public class MemoryManagerUnity {
                                 listaBloques.get(j).setTamano((listaBloques.get(j).getTamano() / 2));
                                 //Se agrega a la lista de bloques de memoria
                                 listaBloques.add(bloqueMemoria);
-                                j++;
+                                j+=2;
 
                             }else if(listaDeEsperaProcesos.get(i).getTamanio()<listaBloques.get(j).getTamano()){ //en caso de que no se pueda dividir se mete en el ultimo que reviso y se rompe el bucle de lista de bloques
                                 System.out.println("el bloque de memoria no se pudo dividir mas, asignando proceso " + listaDeEsperaProcesos.get(i).getNombre() + " a la memoria");
+                                System.out.println("el espacio del bloque que se asigno es de: " + listaBloques.get(j).getTamano());
                                 System.out.println();
                                 listaBloques.get(j).setProcesoAsignado(listaDeEsperaProcesos.get(i));
                                 listaDeEsperaProcesos.remove(i);
@@ -96,17 +120,22 @@ public class MemoryManagerUnity {
                 }
 //                System.out.println("---------------");
             }
-            //revisar si un proceso termino y liberar el bloque
-            for (int m = 0; m < listaBloques.size(); m++) {
-                try {
-                    if(listaBloques.get(m).getProcesoAsignado().duracion()){
-                        System.out.println("proceso: "+listaBloques.get(m).getProcesoAsignado().getNombre()+ " liberado");
-                        listaBloques.get(m).liberarProceso();
-                    }
-                }catch (Exception e){
 
+            if (contador > 0){
+                //revisar si un proceso termino y liberar el bloque
+                for (int m = 1; m < listaBloques.size(); m++) {
+                    try {
+                        if(listaBloques.get(m).getProcesoAsignado().duracion()){
+                            System.out.println("proceso: "+listaBloques.get(m).getProcesoAsignado().getNombre()+ " liberado");
+                            listaBloques.get(m).liberarProceso();
+                        }
+                    }catch (Exception e){
+
+                    }
                 }
             }
+            contador++;
+
         }
 
         }

@@ -74,8 +74,9 @@ public class Proceso {
     }
 
     public boolean duracion(){
-        int validacion1 = r.nextInt(10)+1;
-        int validacion2 = r.nextInt(10)+1;
+        int validacion1 = r.nextInt(15)+1;
+        int validacion2 = r.nextInt(15)+1;
+//        System.out.println("el proceso: "+nombre+" tiene una duracion de: "+validacion1+" y el sistema operativo le asigno: "+validacion2);
         if (validacion1 == validacion2){
             return true;
         } else {

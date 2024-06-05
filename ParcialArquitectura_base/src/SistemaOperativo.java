@@ -23,7 +23,7 @@ public class SistemaOperativo {
         this.memoryManagerUnity.agregarProcesoListaEspera(procesoEnviar);
     }
     public void iniciar(){
-        memoryManagerUnity.a();
+        memoryManagerUnity.gestion_memoria();
     }
     public void crearProceso(){
         Proceso proceso1 = new Proceso(45,"Zoom");

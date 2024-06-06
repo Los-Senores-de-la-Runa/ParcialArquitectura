@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e211dfd4-0101-4309-a2d9-770567751788" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MemoryManagerUnity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MemoryManagerUnity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Proceso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Proceso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SistemaOperativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SistemaOperativo.java" afterDir="false" />
-    </list>
+    <list default="true" id="e211dfd4-0101-4309-a2d9-770567751788" name="Changes" comment="" />
     <list id="d252bc59-f237-45ba-a2de-0647f1ca6424" name="Changes by WIN10" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +69,7 @@
       <workItem from="1717348330154" duration="21935000" />
       <workItem from="1717585989296" duration="222000" />
       <workItem from="1717586428273" duration="235000" />
-      <workItem from="1717586705501" duration="5520000" />
+      <workItem from="1717586705501" duration="5763000" />
     </task>
     <servers />
   </component>
